@@ -7,8 +7,11 @@ enum layers {
     _GAME,
     _LOWER,
     _RAISE,
-    _GAME_NUM,
     _ADJUST
+};
+
+enum tap_dance_codes {
+    TD_ESC_TAB = 0,
 };
 
 #define XX       KC_NO               /* Replace XXXXXXX */
@@ -21,12 +24,18 @@ enum layers {
 /* Momentary layers keys */
 #define LOWER    MO(_LOWER)
 #define RAISE    TT(_RAISE)
-#define GAME_NUM MO(_GAME_NUM)
 
 /* Mod-Tap keys */
 #define CTL_ESC  LCTL_T(KC_ESC)      /* Hold: L Ctrl,  Tap: Esc   */
 #define SFT_NUBS LSFT_T(KC_NUBS)     /* Hold: L Shift, Tap: NUBS  */
 #define SFT_ENT  RSFT_T(KC_ENT)      /* Hold: R Shift, Tap: Enter */
+
+/* Tab Dance keys */
+#define ESC_TAB TD(TD_ESC_TAB)
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_ESC_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_TAB),
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_planck_grid(
@@ -51,17 +60,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_GAME] = LAYOUT_planck_grid(
-        KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
+        ESC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
         KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
         KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  SFT_ENT,
-        KC_LCTL,  QWERTY,   XX,       KC_LALT,  KC_SPC,   GAME_NUM, KC_SPC,   KC_RALT,  KC_RGUI,  KC_MUTE,  KC_VOLD,  KC_VOLU
-    ),
-
-    [_GAME_NUM] = LAYOUT_planck_grid(
-        KC_ESC,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     XX,
-        KC_VOLU,  XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,
-        KC_VOLD,  XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,
-        KC_MUTE,  XX,       XX,       XX,       XX,       __,       XX,       XX,       XX,       XX,       XX,       XX
+        KC_LCTL,  QWERTY,   KC_7,     KC_LALT,  KC_SPC,   KC_3,     KC_4,     KC_5,     KC_6,     KC_MUTE,  KC_VOLD,  KC_VOLU
     ),
 
     [_ADJUST] = LAYOUT_planck_grid(
