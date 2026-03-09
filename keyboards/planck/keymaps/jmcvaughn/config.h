@@ -1,4 +1,3 @@
 #define TAPPING_TOGGLE 3
 #define PERMISSIVE_HOLD
 #define DAC_SAMPLE_MAX 10000U
-

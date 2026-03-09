@@ -33,7 +33,11 @@ enum tap_dance_codes {
 /* Tab Dance keys */
 #define ESC_TAB TD(TD_ESC_TAB)
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+/* Quantum Keycodes */
+/* https://docs.qmk.fm/quantum_keycodes#qmk-keycodes */
+#define RESET QK_BOOTLOADER
+
+tap_dance_action_t tap_dance_actions[] = {
     [TD_ESC_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_TAB),
 };
 
@@ -68,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ADJUST] = LAYOUT_planck_grid(
         XX,       XX,       XX,       XX,       RESET,    XX,       XX,       XX,       XX,       XX,       XX,       XX,
-        XX,       XX,       XX,       DEBUG,    XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,
+        XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,
         XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,       XX,
         XX,       XX,       XX,       XX,       XX,       __,       __,       XX,       XX,       XX,       XX,       XX
     )
@@ -79,4 +83,3 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 /* vim: set expandtab shiftwidth=0 tabstop=4: */
-
